@@ -77,8 +77,7 @@ WSGI_APPLICATION = 'neighbour.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'hood',
+        'ENGINE': 'django.db.backends.postgresql',     'NAME': 'hood',
         'USER':'moringaschool',
     'PASSWORD':'moringa1234',
     }
@@ -109,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 
