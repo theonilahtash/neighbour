@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Profile,NeighbourHood
+from .models import Profile,Neighbourhood
 from django.contrib.auth.decorators import login_required
 
 
