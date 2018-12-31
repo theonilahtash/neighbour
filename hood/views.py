@@ -3,4 +3,10 @@ from django.http import HttpResponse
 
 # Create your views here.
 def welcome(request):
-    return HttpResponse('Welcome to the Neighbourhood')
+    return render(request, 'index.html')
+
+@login_required(login_url='/accounts/login/')
+def profile(request,user_id):
+    profiles = User.objects.get(id=user_id)
+    user = User.objects.get(id=user_id)
+    return render(request,'profile.html',{"profiles":profiles})
