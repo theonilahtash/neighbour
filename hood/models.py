@@ -41,3 +41,13 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
+class Business(models.Model):
+    business_name = models.CharField(max_length=50)
+    business_email = models.EmailField()
+    user = models.ForeignKey(User)
+    neighbourhood = models.ForeignKey(Neighbourhood,null=True,blank=True)
+
+    def __str__(self):
+        return self.user.username
+
+
