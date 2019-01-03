@@ -8,13 +8,30 @@ from django.contrib.auth.decorators import login_required
 def welcome(request):
     neighbourhoods = Neighbourhood.objects.all()
     businesses = Business.objects.all()
-    return render(request, 'index.html',{"neighbourhoods":neighbourhood,"businesses":businesses})
+    return render(request, 'index.html',{"neighbourhoods":neighbourhoods,"businesses":businesses})
 
 @login_required(login_url='/accounts/login/')
 def profile(request,user_id):
     profiles = User.objects.get(id=user_id)
     user = User.objects.get(id=user_id)
     return render(request,'profile.html',{"profiles":profiles})
+
+
+@login_required(login_url='/accounts/login/')
+def add_profile(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewProfileForm(request.POST,request.FILES)
+        if form.is_valid():
+            profile = profile_form.save(commit=False)
+            profile.user = current_user
+            profile.save()
+        return redirect('welcome')
+    else:
+        form = NewProfileForm()
+    return render(request,'new_profile.html', {"form":form})
+
+
 
 def search_results(request):
     if 'business' in request.GET and request.GET["business"]:
@@ -36,7 +53,7 @@ def new_business(request):
             business = form.save(commit = false)
             business.user = current_user
             business.save()
-            return redirect('search_results')
+            return redirect('welcome')
 
     else:
         form = BusinessForm()
