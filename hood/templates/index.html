@@ -1,0 +1,44 @@
+{%extends 'base.html'%} {% load bootstrap4 %} {% load static %} {% block content %} {{block.super}}
+<div class="container" style="background-color: cadetblue">
+    <div class="row" style="padding-bottom:20px">
+
+        <div class="col-sm-12 col-sm-12 col-md-12">
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                {% if neighbourhoods %} {% for neighbourhood in neighbourhoods %}
+                <div class="col-xs-12 col-sm-12 col-md-4" style="width:100% !important;">
+                    <div class="card" style="width:100% !important;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+
+                        <div class="card-body">
+                            <p style="font-weight:bolder;text-decoration-line: underline;">{{neighbourhood.name}}({{neighbourhood.location}})</p>
+                            <p>{{neighbourhood.description.capitalize}}</p>
+                        </div>
+                        <!-- <div class="card-footer">
+                            <a href="{% url 'join_hood' neighbourhood.id %}" class="btn btn-sm btn-success">Join Hood</a>
+                            {% if neighbourhood.user_id == user.id %}
+                            <a href="{% url 'edit_hood' neighbourhood.id %}" class="btn btn-sm btn-info">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            {% endif %} {% if neighbourhood.user_id == user.id %}
+                            <a href="{% url 'delete_hood' neighbourhood.id %}" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+                {%endfor%} {%else%} -->
+                {%endif%}
+
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+{%endblock%}
