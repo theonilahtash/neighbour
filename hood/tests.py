@@ -9,8 +9,8 @@ class ProfileTestClass(TestCase):
     '''
     def setUp(self):
         self.user = User.objects.create(id =1,username='testname')
-        self.neighbourhood = Neighbourhood(name='kejani', location='pale', user=self.user)
-        self.neighbourhood.save_neighbourhood()
+        self.neighbourhood = Neighbourhood(name='mtaani', location='hapa', user=self.user)
+        # self.neighbourhood.save_neighbourhood()
         self.profile = Profile(user=self.user, hood = self.neighbourhood)
 
     def test_instance(self):

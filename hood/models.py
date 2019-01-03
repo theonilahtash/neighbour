@@ -28,8 +28,8 @@ class Neighbourhood(models.Model):
         return neighbourhood
 
     @classmethod
-    def search_by_neighbourhood(cls,name):
-        neighbourhood = Neighbourhood.objects.filter(user__username__icontains=name)
+    def search_by_title(cls,search_term):
+        neighbourhood = cls.objects.filter(name__icontains=search_term)
         return neighbourhood
 
 class Profile(models.Model):
