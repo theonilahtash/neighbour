@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>New Business</title>
+    <title>New Profile</title>
     {{form.media}} {% block styles %} {% bootstrap_css %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}"> {% endblock %}
 
@@ -14,7 +14,7 @@
 
 <body>
 
-    <form action="{%url 'search_results'%}" method="POST" enctype="multipart/form-data">
+    <form action="{%url 'welcome'%}" method="POST" enctype="multipart/form-data">
         {%csrf_token%} {% for field in form %} {% bootstrap_field field %} {% endfor %}
         <input type="submit" class="btn btn-info btn-lg" value="Post">
     </form>

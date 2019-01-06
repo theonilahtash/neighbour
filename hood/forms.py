@@ -7,10 +7,11 @@ from django.contrib.auth.models import User
 class NewProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ['user', 'email']
+        exclude = ['user', 'neighbourhood']
 
-class BusinessForm(forms.ModelForm):
+class NewBusinessForm(forms.ModelForm):
     class Meta:
-        model = Project
-        fields = ['name','user','hood']
+        model = Business
+        fields =['business_name','business_email','description']
+        exclude =['user']
 

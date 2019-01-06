@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Profile,Neighbourhood,Business
+from .forms import NewProfileForm,NewBusinessForm
+
 from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+@login_required(login_url='/accounts/login/')
 def welcome(request):
     neighbourhoods = Neighbourhood.objects.all()
     businesses = Business.objects.all()
@@ -48,7 +51,7 @@ def search_results(request):
 @login_required(login_url='/accounts/login/')
 def new_business(request):
     if request.method == 'POST':
-        form = BusinessForm(request.POST)
+        form = NewBusinessForm(request.POST)
         if form.is_valid():
             business = form.save(commit = false)
             business.user = current_user
@@ -56,5 +59,18 @@ def new_business(request):
             return redirect('welcome')
 
     else:
-        form = BusinessForm()
-        return render(request,'business.html')
+        form = NewBusinessForm()
+        return render(request,'new_business.html',{"form":form})
+
+@login_required(login_url='/accounts/login/')
+def new_hood(request):
+    if request.method =='POST':
+        form = NewHoodForm(request.POST)
+        if form.is_valid():
+            hood = form.save(commit=false)
+            hood.user = current_user
+            hood.save()
+            return redirect('welcome')
+    else:
+        form = NewHoodForm()
+        return render(request,'new_hood.html',{"form":form})

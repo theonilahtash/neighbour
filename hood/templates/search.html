@@ -2,20 +2,26 @@
 <div class="container">
 
     <div class="row">
-        {% if articles%}
-        <h2>Found {{ business|length }} of searched term {{message}}</h2>
+        {% if neighbourhoods%}
+        <h2>Found {{ neighbourhood|length }} of searched term {{message}}</h2>
         {% else %}
-        <h2> Found 0 business {{message}}</h2>
+        <h2> Found 0 neighbourhood {{message}}</h2>
         {% endif %}
 
     </div>
 
     <div class="row">
-
-        {% if business %} {% for business in businesses %}
-        <div class="col-sm-6 col-md-3">
-            <h1>{{business.title}}</h1>
-        </div>
+    
+        {% if neighbourhood %} {% for neighbourhood in neighbourhood %}
+    
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            <div class="card" style="width:100% !important;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);padding-left: 20px;">
+                <div class="panel-heading" style="font-weight:bolder;text-decoration-line: underline;">{{neighbourhood.name}}</div>
+                <div class="panel-body">
+                    <p>{{neighbourhood.description}}</p>
+                    <p>
+                        <b>Location: </b>{{neighbourhood.location}}</p>
+                </div>
         {% endfor %} {% endif %}
     </div>
 </div>
