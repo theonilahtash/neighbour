@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Profile,Neighbourhood,Business
-from .forms import NewProfileForm,NewBusinessForm
+from .forms import NewProfileForm,NewBusinessForm,NewHoodForm
 
 from django.contrib.auth.decorators import login_required
 
