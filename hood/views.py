@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404,HttpResponseRedirect,JsonResponse
 from .models import Profile,Neighbourhood,Business
-from .forms import NewProfileForm,NewBusinessForm,NewHoodForm
+from .forms import NewProfileForm,NewBusinessForm,NewHoodForm,UpdateProfileForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
@@ -33,6 +33,13 @@ def add_profile(request):
     else:
         form = NewProfileForm()
     return render(request,'new_profile.html', {"form":form})
+
+def home(request):
+  '''
+  View function that renders users neighbourhood
+  '''
+  neighbourhoods = Neighbourhood.objects.filter(user=request.user)
+  return render(request,'home.html',{"neighbourhoods":neighbourhoods})
 
 
 
