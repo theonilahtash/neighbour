@@ -83,11 +83,11 @@ def new_business(request):
 @login_required(login_url='/accounts/login/')
 def new_hood(request):
     if request.method =='POST':
-        # neighbourhoods = Neighbourhood.objects.filter(user=request.user)
+        neighbourhoods = Neighbourhood.objects.filter(user=request.user)
         form = NewHoodForm(request.POST)
         if form.is_valid():
             hood = form.save(commit = False)
-            # hood.user = request_user
+            hood.user = request_user
             hood.save()
             return redirect('welcome')
     else:
