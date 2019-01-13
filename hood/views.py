@@ -55,12 +55,12 @@ def home(request):
 
 
 def search_results(request):
-    if 'neighbourhoods' in request.GET and request.GET["neighbourhoods"]:
-        search_term = request.GET.get("neighbourhood")
-        searched_neighbourhoods = Neighbourhood.search_by_title(search_term)
+    if 'business' in request.GET and request.GET["businesses"]:
+        search_term = request.GET.get("business")
+        searched_business = Business.search_by_title(search_term)
         message = f"{search_term}"
 
-        return render(request, 'search.html',{"message":message,"neighbourhoods": searched_neighbourhoods})
+        return render(request, 'search.html',{"message":message,"businesses": searched_businesses})
 
     else:
         message = "Searched"
