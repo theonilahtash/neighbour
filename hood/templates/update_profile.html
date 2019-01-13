@@ -12,9 +12,8 @@
                 <h3 class="">Edit Profile</h3>
             </div>
             <div class="panel-body">
-                <form action="{% url 'update_profile' %}" method="post">
-
-                    {%csrf_token%} {% bootstrap_form form %}
+                <form action="{%url 'welcome'%}" method="POST" enctype="multipart/form-data">
+                    {%csrf_token%} {% for field in form %} {% bootstrap_field field %} {% endfor %}
                     <button type="submit" class="btn btn-success btn-sm">Update Profile</button>
                 </form>
             </div>

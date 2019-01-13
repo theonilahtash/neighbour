@@ -14,25 +14,14 @@ def welcome(request):
     return render(request, 'index.html',{"neighbourhoods":neighbourhoods,"businesses":businesses})
 
 @login_required(login_url='/accounts/login/')
-def profile(request,user_id):
-    profiles = User.objects.get(id=user_id)
-    user = User.objects.get(id=user_id)
-    return render(request,'profile.html',{"profiles":profiles})
-
-@login_required(login_url='/accounts/login/')
 def profile(request):
-	'''
-	View profile that renders a user's profile page
-	'''
+
 	profile = Profile.objects.get(user = request.user)
   
-	return render(request,'profile/profile.html',locals())
+	return render(request,'profile.html',{"profile":profile})
 
 @login_required(login_url='/accounts/login/')
 def update_profile(request):
-	'''
-	View function that enables a user to update their profile
-	'''
 	profile = Profile.objects.get(user = request.user)
 	if request.method == 'POST':
 		form = UpdateProfileForm(request.POST,instance = profile )
@@ -42,7 +31,7 @@ def update_profile(request):
 			return redirect('profile')
 	else:
 		form = UpdateProfileForm(instance = profile )
-		return render(request,'profile/update_profile.html',locals())
+		return render(request,'update_profile.html',{"profile":profile})
 
 
 @login_required(login_url='/accounts/login/')
