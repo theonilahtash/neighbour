@@ -49,9 +49,6 @@ def add_profile(request):
     return render(request,'new_profile.html', {"form":form})
 
 def home(request):
-  '''
-  View function that renders users neighbourhood
-  '''
   neighbourhoods = Neighbourhood.objects.filter(user=request.user)
   return render(request,'home.html',{"neighbourhoods":neighbourhoods})
 
