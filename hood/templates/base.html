@@ -9,12 +9,12 @@
     <title> Neighbourhood </title>
     {% endif %} {% block styles %} {% bootstrap_css %}
     <link rel="stylesheet" href="{% static 'css/basehood.css' %}"> {% endblock %}
-
+    <link href="https://bootswatch.com/4/sketchy/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
 
-<div class="container" style="background-image: url(https://images.pexels.com/photos/280222/pexels-photo-280222.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500)">
+<div class="container">
     {% include "navbar.html" %}
     <div style="margin-top: 200px; background-color:cadetblue;">
     </div>
@@ -23,3 +23,15 @@
 </body>
 
 </html>
+<style>
+    body {
+        font-family: 'Nunito', sans-serif;
+        background: url(https://images.pexels.com/photos/1775645/pexels-photo-1775645.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        height: 500px;
+    }
+    
+</style>

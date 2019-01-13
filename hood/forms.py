@@ -17,6 +17,11 @@ class NewBusinessForm(forms.ModelForm):
 
 class NewHoodForm(forms.ModelForm):
     class Meta:
-        model = Hood
+        model = Neighbourhood
         fields = ['name','location','description']
+
+class UpdateProfileForm(forms.ModelForm):
+  class Meta:
+    model = Profile
+    fields = ['bio']
 

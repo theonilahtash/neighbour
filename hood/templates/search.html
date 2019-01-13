@@ -1,28 +1,38 @@
-{%extends 'base.html'%} {% block content %}
-<div class="container">
+{%extends 'base.html'%} {% load bootstrap4 %} {% load static %} {% block content %} {{block.super}}
 
-    <div class="row">
-        {% if neighbourhoods%}
-        <h2>Found {{ neighbourhood|length }} of searched term {{message}}</h2>
-        {% else %}
-        <h2> Found 0 neighbourhood {{message}}</h2>
-        {% endif %}
+<div class="jumbotron" style="background-color: grey;opacity:o.7">
+    <div class="row" style="padding-bottom:20px">
 
-    </div>
+        <div class="col-sm-12 col-sm-12 col-md-12">
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                {% if neighbourhoods %} {% for neighbourhood in neighbourhoods %}
+                <div class="col-xs-12 col-sm-12 col-md-4" style="width:100%">
+                    <div class="card" style="width:100%">
+                        <div class="card-body">
+                            <p style="font-weight:bolder;text-decoration-line: underline;">{{neighbourhood.name}}({{neighbourhood.location}})</p>
+                            <p>{{neighbourhood.description.capitalize}}</p>
+                        </div>
 
-    <div class="row">
-    
-        {% if neighbourhood %} {% for neighbourhood in neighbourhood %}
-    
-        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-            <div class="card" style="width:100% !important;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);padding-left: 20px;">
-                <div class="panel-heading" style="font-weight:bolder;text-decoration-line: underline;">{{neighbourhood.name}}</div>
-                <div class="panel-body">
-                    <p>{{neighbourhood.description}}</p>
-                    <p>
-                        <b>Location: </b>{{neighbourhood.location}}</p>
+                        </div>
+                    </div>
                 </div>
-        {% endfor %} {% endif %}
+                {%endfor%} {%else%}
+                <div class="container" style="background-color:cadetblue;color:white;font-size: 2.5em;padding-right: 300px">
+                <h4>No hoods added yet! You can create one
+                    <a href="{% url 'new_hood' %}">here</a>
+                </h4>
+                </div>
+                {%endif%}
+
+
+
+            </div>
+
+        </div>
+
+
     </div>
 </div>
-{% endblock %}
+    {%endblock%}

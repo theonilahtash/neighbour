@@ -1,8 +1,8 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render,redirect
+from django.http import HttpResponse,Http404,HttpResponseRedirect,JsonResponse
 from .models import Profile,Neighbourhood,Business
 from .forms import NewProfileForm,NewBusinessForm,NewHoodForm
-
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 
@@ -37,12 +37,12 @@ def add_profile(request):
 
 
 def search_results(request):
-    if 'business' in request.GET and request.GET["business"]:
-        search_term = request.GET.get("business")
-        searched_businesses = Business.search_by_title(search_term)
+    if 'neighbourhoods' in request.GET and request.GET["neighbourhoods"]:
+        search_term = request.GET.get("neighbourhood")
+        searched_neighbourhoods = Neighbourhood.search_by_title(search_term)
         message = f"{search_term}"
 
-        return render(request, 'search.html',{"message":message,"businesses": searched_businesses})
+        return render(request, 'search.html',{"message":message,"neighbourhoods": searched_neighbourhoods})
 
     else:
         message = "Searched"
@@ -53,7 +53,7 @@ def new_business(request):
     if request.method == 'POST':
         form = NewBusinessForm(request.POST)
         if form.is_valid():
-            business = form.save(commit = false)
+            business = form.save(commit = False)
             business.user = current_user
             business.save()
             return redirect('welcome')
@@ -65,10 +65,11 @@ def new_business(request):
 @login_required(login_url='/accounts/login/')
 def new_hood(request):
     if request.method =='POST':
+        # neighbourhoods = Neighbourhood.objects.filter(user=request.user)
         form = NewHoodForm(request.POST)
         if form.is_valid():
-            hood = form.save(commit=false)
-            hood.user = current_user
+            hood = form.save(commit = False)
+            # hood.user = request_user
             hood.save()
             return redirect('welcome')
     else:

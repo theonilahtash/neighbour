@@ -1,18 +1,45 @@
 {%extends 'base.html'%} {% load bootstrap4 %} {% load static %} {% block content %} {{block.super}}
-<div class="container" style="background-image: url(https://images.pexels.com/photos/1744537/pexels-photo-1744537.png?auto=compress&cs=tinysrgb&dpr=1&w=500)">
-
-        <div class="col-sm-12 col-sm-12 col-md-12"style="margin-right:100px;">
+<div class="container-fluid">
+    <div class="page-header" style="text-align: center;font-family: 'Emilys Candy', cursive;color:chocolate;font-weight:bolder;text-decoration-line: underline;font-size: 3em">
+        <h1>Neighbourhood site</h1>
+    </div>
+        <div class="container image">
+            <!-- Search -->
+            <div class="container" style="padding-right: 300px;padding-left: 300px">
+                <form class="navbar-form" role="search" action="{% url 'search_results' %}">
+                <input type="text" class="form-control">
+                <button type="submit" class="btn btn-info">Search hoods</button>
+            </form>
+            </div>
         </div>
-        <div class="jumbotron" style="opacity:0.7">
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<div class="jumbotron" style="background-color: cadetblue;opacity:0.9">
+    <div class="row" style="padding-bottom:20px">
+
+        <div class="col-sm-12 col-sm-12 col-md-12">
+        </div>
+        <div class="col-md-9">
             <div class="row">
                 {% if neighbourhoods %} {% for neighbourhood in neighbourhoods %}
-
-                        <div class="jumbotron">
-                                <p style="font-weight:bolder;text-decoration-line: underline;color:blue">{{neighbourhood.name}}({{neighbourhood.location}})</p>
+                <div class="col-xs-12 col-sm-12 col-md-4" style="width:100%">
+                    <div class="card" style="width:100% ;margin-bottom: 20px;">
+                        <div class="card-body" style="color:chocolate;font-size: 1.4em">
+                            <p style="font-weight:bolder;text-decoration-line: underline;">{{neighbourhood.name}}({{neighbourhood.location}})</p>
                             <p>{{neighbourhood.description.capitalize}}</p>
                         </div>
-                        {%endfor%}
-                        {%endif%}
+                    </div>
+                </div>
+                {%endfor%}
+                {%else%}
+                <h4>No hoods added yet! Create one
+                    <a href="{% url 'new_hood' %}">here</a>
+                </h4>
+                {%endif%}
 
 
 
@@ -22,4 +49,5 @@
 
 
     </div>
+</div>
 {%endblock%}

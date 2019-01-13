@@ -1,0 +1,44 @@
+{%extends 'base.html'%} {%block content%}
+
+<div class="container" style="padding-bottom:20px">
+
+    <div class="col-xs-12 col-sm-12 col-md-12" style="padding-top: 24px">
+    </div>
+    <div class="container">
+        <div class="col-md-9">
+            <div class="row">
+                {% if businesses %} {%for business in businesses%}
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    <div class="card" style="width:100;">
+
+                        <div class="panel-heading">
+                            <p style="font-weight:bolder;text-decoration-line: underline;">{{business.name}}</p>
+                        </div>
+                        <div class="panel-body">
+                            <p>{{business.email}}</p>
+                            <p>{{business.description}}</p>
+                        </div>
+                        <br>
+
+
+
+                    </div>
+                </div>
+                {%endfor%} {%else%}
+                <h4>No business created yet. You can add them
+                    <a href="{% url 'add_business' %}">here</a>
+                </h4>
+                {%endif%}
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+{%endblock%}
