@@ -16,7 +16,7 @@
     <div class="container" style="padding-right: 700px;background-color: grey">
     <form action="{%url 'welcome'%}" method="POST" enctype="multipart/form-data">
         {%csrf_token%} {% for field in form %} {% bootstrap_field field %} {% endfor %}
-        <input type="submit" class="btn btn-info btn-lg" value="Post">
+        <input type="submit" class="btn btn-info btn-lg"  value="Post">
     </form>
     </div>
 
