@@ -5,7 +5,7 @@
 Theonilah Owali
 
 ## Link to Deployed Site on Heroku
-
+* https://neighbour1.herokuapp.com/
 ## Setup and installation
 
 - Clone the Repo uding the following command:
