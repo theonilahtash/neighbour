@@ -1,1 +1,1 @@
-web: gunicorn zone.wsgi
+web: gunicorn neighbour.wsgi
